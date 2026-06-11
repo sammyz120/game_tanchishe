@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贪吃蛇</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>贪吃蛇</h1>
+      <p class="subtitle">方向键 / WASD 控制 · 空格或 Enter 重新开始</p>
+    </header>
+
+    <main class="game-container">
+      <!-- 左侧：游戏画布 -->
+      <div class="canvas-wrapper">
+        <canvas id="gameCanvas" width="600" height="600" aria-label="贪吃蛇游戏画布"></canvas>
+
+        <!-- 开始界面 -->
+        <div id="startScreen" class="overlay">
+          <div class="overlay-panel">
+            <h2>准备开始</h2>
+            <p>吃掉不同颜色的食物获得分数，避免撞墙和撞到自己。</p>
+            <ul class="food-legend">
+              <li><span class="dot dot-normal"></span>普通食物 +10</li>
+              <li><span class="dot dot-advanced"></span>高级食物 +30</li>
+              <li><span class="dot dot-rare"></span>稀有食物 +50</li>
+            </ul>
+            <p class="high-score-label">历史最高分：<span id="startHighScore">0</span></p>
+            <button id="startBtn" class="btn btn-primary" type="button">开始游戏</button>
+          </div>
+        </div>
+
+        <!-- 游戏结束界面 -->
+        <div id="gameOverScreen" class="overlay hidden">
+          <div class="overlay-panel">
+            <h2>游戏结束</h2>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-label">最终分数</span>
+                <span id="finalScore" class="stat-value">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">存活时间</span>
+                <span id="finalTime" class="stat-value">00:00</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">吃到食物</span>
+                <span id="finalFoodCount" class="stat-value">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">历史最高分</span>
+                <span id="finalHighScore" class="stat-value">0</span>
+              </div>
+            </div>
+            <p id="newRecordMsg" class="new-record hidden">🎉 新纪录！</p>
+            <button id="restartBtn" class="btn btn-primary" type="button">再来一局</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧：实时信息面板 -->
+      <aside class="info-panel">
+        <section class="info-card">
+          <h3>当前状态</h3>
+          <div class="info-row">
+            <span>分数</span>
+            <strong id="scoreDisplay">0</strong>
+          </div>
+          <div class="info-row">
+            <span>存活时间</span>
+            <strong id="timeDisplay">00:00</strong>
+          </div>
+          <div class="info-row">
+            <span>食物数量</span>
+            <strong id="foodCountDisplay">0</strong>
+          </div>
+          <div class="info-row">
+            <span>蛇身长度</span>
+            <strong id="lengthDisplay">3</strong>
+          </div>
+        </section>
+
+        <section class="info-card">
+          <h3>食物说明</h3>
+          <ul class="food-legend vertical">
+            <li><span class="dot dot-normal"></span>普通 · +10 分</li>
+            <li><span class="dot dot-advanced"></span>高级 · +30 分</li>
+            <li><span class="dot dot-rare"></span>稀有 · +50 分</li>
+          </ul>
+        </section>
+
+        <section class="info-card">
+          <h3>操作说明</h3>
+          <ul class="controls-list">
+            <li><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> 或 <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> 移动</li>
+            <li><kbd>Space</kbd> / <kbd>Enter</kbd> 重新开始</li>
+            <li><kbd>P</kbd> 暂停 / 继续</li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
